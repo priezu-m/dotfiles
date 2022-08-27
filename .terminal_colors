@@ -1,0 +1,29 @@
+foreground:			c7c7c7
+background:			253361
+bold:				feffff
+links:				005bbb
+selection:			c1ddff
+selected text:		000000
+underline color:	000000
+
+cursor:				c7c7c7
+cursor guide:		b3ecff
+cursor text:		feffff
+
+black:				000000
+red:				c91b00
+green:				009e00
+yellow:				ff0000
+blue:				0225c7
+magenta:			c930c7
+cyan:				00c5c7
+white:				c7c7c7
+
+brigth black:		676767
+brigth red:			ff0000
+brigth green:		5aff63
+brigth yellow:		fff900
+brigth blue:		6871ff
+brigth magenta:		fe57e7
+brigth cyan:		5ffdff
+brigth white:		feffff
