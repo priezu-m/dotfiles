@@ -18,13 +18,14 @@ hi clear CursorLine
 hi link CursorLine CursorColumn
 nnoremap <space>h :set cursorline! cursorcolumn!<CR>
 
+hi Pmenu ctermfg=white
+
 au VimLeave * :!clear
 set notermguicolors t_Co=16
 set encoding=UTF-8
 
 call plug#begin('~/.vim/plugged')
 Plug 'vim-syntastic/syntastic'
-Plug 'alexandregv/norminette-vim'
 Plug 'alexandregv/norminette-vim'
 Plug '42Paris/42header'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
