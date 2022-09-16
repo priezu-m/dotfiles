@@ -6,6 +6,7 @@ set list
 set showbreak=↪\
 set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set tabstop=4
+set backspace=indent,eol,start
 set shiftwidth=4
 
 set  wildignore=*.pdf,*.swp
@@ -18,7 +19,7 @@ hi clear CursorLine
 hi link CursorLine CursorColumn
 nnoremap <space>h :set cursorline! cursorcolumn!<CR>
 
-hi Pmenu ctermfg=white
+hi Pmenu ctermfg=yellow
 
 au VimLeave * :!clear
 set notermguicolors t_Co=16
@@ -87,6 +88,8 @@ function SetupLightlineColors() abort
 
   call lightline#colorscheme()
 endfunction
+
+set laststatus=2
 
 let g:lightline = {
 	\ 'active': {
