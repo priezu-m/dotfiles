@@ -1,3 +1,7 @@
+"coc-clangd
+"coc-explorer
+"coc-highlight
+
 set nocompatible
 let $BASH_ENV = "~/.bash_profile"
 set nu
