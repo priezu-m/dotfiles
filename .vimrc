@@ -19,11 +19,14 @@ hi clear CursorLine
 hi link CursorLine CursorColumn
 nnoremap <space>h :set cursorline! cursorcolumn!<CR>
 
-hi Pmenu ctermfg=yellow
-
 au VimLeave * :!clear
 set notermguicolors t_Co=16
 set encoding=UTF-8
+
+hi CocFloating   ctermbg=magenta ctermfg=lightyellow
+hi CocMenuSel    ctermbg=black
+hi CocFloatThumb ctermbg=grey
+hi CocFloatSbar  ctermbg=white
 
 call plug#begin('~/.vim/plugged')
 Plug 'vim-syntastic/syntastic'
