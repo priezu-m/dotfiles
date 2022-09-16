@@ -15,6 +15,8 @@ for s:c in ['a', 'A', '<Insert>', 'i', 'I', 'gI', 'gi', 'o', 'O']
     exe 'nnoremap ' . s:c . ' :nohlsearch<CR>' . s:c
 endfor
 
+set is hls
+
 hi clear CursorLine
 hi link CursorLine CursorColumn
 nnoremap <space>h :set cursorline! cursorcolumn!<CR>
