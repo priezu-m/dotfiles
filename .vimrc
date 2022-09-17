@@ -1,6 +1,7 @@
 "coc-clangd
 "coc-explorer
 "coc-highlight
+"coc-prettier
 
 set nocompatible
 let $BASH_ENV = "~/.bash_profile"
