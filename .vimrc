@@ -1,4 +1,4 @@
-"coc-clangd //works best whit clangd-13
+"coc-clangd //works best whit clangd-13 and ctags
 "coc-explorer
 "coc-highlight
 "coc-prettier
@@ -15,6 +15,26 @@ set backspace=indent,eol,start
 set shiftwidth=4
 
 set  wildignore=*.pdf,*.swp
+
+function! DelTagOfFile(file)
+  let fullpath = a:file
+  let cwd = getcwd()
+  let tagfilename = cwd . "/tags"
+  let f = substitute(fullpath, cwd . "/", "", "")
+  let f = escape(f, './')
+  let cmd = 'sed -i "/' . f . '/d" "' . tagfilename . '"'
+  let resp = system(cmd)
+endfunction
+
+function! UpdateTags()
+  let f = expand("%:p")
+  let cwd = getcwd()
+  let tagfilename = cwd . "/tags"
+  let cmd = 'ctags -a -f ' . tagfilename . ' --c++-kinds=+p --fields=+iaS --extra=+q ' . '"' . f . '"'
+  call DelTagOfFile(f)
+  let resp = system(cmd)
+endfunction
+autocmd BufWritePost *.cpp,*.h,*.c call UpdateTags()
 
 for s:c in ['a', 'A', '<Insert>', 'i', 'I', 'gI', 'gi', 'o', 'O']
     exe 'nnoremap ' . s:c . ' :nohlsearch<CR>' . s:c
@@ -291,6 +311,7 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 nmap <space>e <Cmd>CocCommand explorer --quit-on-open<CR>
-nmap <space>t :wa \| !make test<CR>
-nmap <space>f :vimgrep /FIX\\|TODO\\|BUG/ **/*.c <CR>
-nmap <space>n :w \| Error <CR>
+nmap <space>f :vimgrep /FIX\\|TODO\\|BUG\\|fix\\|todo\\|bug/ **/*.c \| copen <CR>
+nmap <space>n :w \| Error<CR>
+nmap <space>d <C-]k
+
