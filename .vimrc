@@ -313,5 +313,4 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 nmap <space>e <Cmd>CocCommand explorer --quit-on-open<CR>
 nmap <space>f :vimgrep /FIX\\|TODO\\|BUG\\|fix\\|todo\\|bug/ **/*.c \| copen <CR>
 nmap <space>n :w \| Error<CR>
-nmap <space>d <C-]k
-
+nmap <space>d <C-]>
