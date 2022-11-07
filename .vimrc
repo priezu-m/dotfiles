@@ -1,4 +1,4 @@
-"coc-clangd
+"coc-clangd //works best whit clangd-13
 "coc-explorer
 "coc-highlight
 "coc-prettier
@@ -6,7 +6,7 @@
 set nocompatible
 let $BASH_ENV = "~/.bash_profile"
 set nu
-set scrolloff=25
+set scrolloff=10
 set list
 set showbreak=↪\
 set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
@@ -46,10 +46,13 @@ call plug#end()
 
 " Enable norminette-vim (and gcc)
 let g:syntastic_c_checkers = ['norminette']
-"let g:syntastic_aggregate_errors = 1
+let g:syntastic_aggregate_errors = 0
+let g:syntastic_enable_signs = 0
+let g:syntastic_enable_balloons = 0
+let g:syntastic_enable_highlighting = 0
 
 " Set the path to norminette (do no set if using norminette of 42 mac)
-"let g:syntastic_c_norminette_exec = '/usr/local/bin/norminette'
+let g:syntastic_c_norminette_exec = '/usr/local/bin/norminette'
 
 " Support headers (.h)
 let g:c_syntax_for_h = 1
@@ -57,9 +60,6 @@ let g:syntastic_c_include_dirs = ['include', '../include', '../../include', 'lib
 
 " Pass custom arguments to norminette (this one ignores 42header)
 let g:syntastic_c_norminette_args = '-R CheckTopCommentHeader'
-
-" Check errors when opening a file (disable to speed up startup time)
-let g:syntastic_check_on_open = 1
 
 " Enable error list
 let g:syntastic_always_populate_loc_list = 1
