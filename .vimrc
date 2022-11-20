@@ -72,7 +72,7 @@ let g:syntastic_enable_balloons = 0
 let g:syntastic_enable_highlighting = 0
 
 " Set the path to norminette (do no set if using norminette of 42 mac)
-let g:syntastic_c_norminette_exec = '/usr/local/bin/norminette'
+"let g:syntastic_c_norminette_exec = '/usr/local/bin/norminette'
 
 " Support headers (.h)
 let g:c_syntax_for_h = 1
