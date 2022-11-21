@@ -15,7 +15,7 @@ set tabstop=4
 set backspace=indent,eol,start
 set shiftwidth=4
 
-set  wildignore=*.pdf,*.swp
+set wildignore=*.pdf,*.swp
 
 function! DelTagOfFile(file)
   let fullpath = a:file
