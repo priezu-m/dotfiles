@@ -4,7 +4,6 @@
 "coc-prettier
 
 set nocompatible
-let $BASH_ENV = "~/.bash_profile"
 set nu
 set encoding=utf-8
 scriptencoding utf-8
