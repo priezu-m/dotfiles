@@ -1,2 +1,2 @@
 # dotfiles
-just a safe in case i accidentally delete everything
+just a safe in case I accidentally delete everything
