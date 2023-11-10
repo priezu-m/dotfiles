@@ -1,0 +1,15 @@
+{
+  "clangd.fallbackFlags": ["-std=c++20"],
+  "explorer.width": 50,
+  "explorer.icon.source": "vim-devicons",
+  "explorer.file.showHiddenFiles": false,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.keyMappings": {
+  "s": "open:vsplit"
+	},
+  "explorer.file.hiddenRules": {
+    "extensions": ["swp", "pdf", "o", "a", "obj", "pyc", "un~"],
+	"filenames": ["node_modules", ".gitmodules"],
+    "patternMatches": []
+  }
+}
