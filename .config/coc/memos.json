@@ -1,0 +1,10 @@
+{
+  "coc-explorer|global": {
+    "clipboard": {
+      "type": "cut",
+      "fullpaths": [
+        "/home/peru/pipex/in"
+      ]
+    }
+  }
+}
