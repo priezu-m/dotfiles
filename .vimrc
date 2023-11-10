@@ -3,10 +3,11 @@
 "coc-highlight
 "coc-prettier
 
+set undofile
+set encoding=UTF-8
 set nocompatible
+let $BASH_ENV = "~/.bash_profile"
 set nu
-set encoding=utf-8
-scriptencoding utf-8
 set scrolloff=10
 set list
 set showbreak=↪\
@@ -14,28 +15,28 @@ set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set tabstop=4
 set backspace=indent,eol,start
 set shiftwidth=4
-
 set wildignore=*.pdf,*.swp
+set tags=tags;/
 
-function! DelTagOfFile(file)
-  let fullpath = a:file
-  let cwd = getcwd()
-  let tagfilename = cwd . "/tags"
-  let f = substitute(fullpath, cwd . "/", "", "")
-  let f = escape(f, './')
-  let cmd = 'sed -i "/' . f . '/d" "' . tagfilename . '"'
-  let resp = system(cmd)
-endfunction
+fun! SetMkfile()
+  let filemk = "Makefile"
+  let pathmk = "./"
+  let depth = 1
+  while depth < 4
+    if filereadable(pathmk . filemk)
+      return pathmk.filemk
+    endif
+    let depth += 1
+    let pathmk = "../" . pathmk
+  endwhile
+  return "."
+endf
 
-function! UpdateTags()
-  let f = expand("%:p")
-  let cwd = getcwd()
-  let tagfilename = cwd . "/tags"
-  let cmd = 'ctags -a -f ' . tagfilename . ' --c++-kinds=+p --fields=+iaS --extra=+q ' . '"' . f . '"'
-  call DelTagOfFile(f)
-  let resp = system(cmd)
-endfunction
-autocmd BufWritePost *.cpp,*.h,*.c call UpdateTags()
+let makefile=SetMkfile()
+
+if !empty(findfile('tags', '.;'))
+	autocmd BufWritePost *.cpp,*.h,*.c execute 'silent !make -f '.makefile.' tags &'
+endif
 
 for s:c in ['a', 'A', '<Insert>', 'i', 'I', 'gI', 'gi', 'o', 'O']
     exe 'nnoremap ' . s:c . ' :nohlsearch<CR>' . s:c
@@ -57,39 +58,10 @@ hi CocFloatThumb ctermbg=grey
 hi CocFloatSbar  ctermbg=white
 
 call plug#begin('~/.vim/plugged')
-Plug 'vim-syntastic/syntastic'
-Plug 'alexandregv/norminette-vim'
-Plug '42Paris/42header'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
-
-" Enable norminette-vim (and gcc)
-let g:syntastic_c_checkers = ['norminette']
-let g:syntastic_aggregate_errors = 0
-let g:syntastic_enable_signs = 0
-let g:syntastic_enable_balloons = 0
-let g:syntastic_enable_highlighting = 0
-
-" Set the path to norminette (do no set if using norminette of 42 mac)
-"let g:syntastic_c_norminette_exec = '/usr/local/bin/norminette'
-
-" Support headers (.h)
-let g:c_syntax_for_h = 1
-let g:syntastic_c_include_dirs = ['include', '../include', '../../include', 'libft', '../libft/include', '../../libft/include']
-
-" Pass custom arguments to norminette (this one ignores 42header)
-let g:syntastic_c_norminette_args = '-R CheckTopCommentHeader'
-
-" Enable error list
-let g:syntastic_always_populate_loc_list = 1
-
-" Automatically open error list
-" let g:syntastic_auto_loc_list = 1
-
-" Skip check when closing
-let g:syntastic_check_on_wq = 0
 
 autocmd VimEnter * call SetupLightlineColors()
 function SetupLightlineColors() abort
@@ -157,7 +129,7 @@ set nowritebackup
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
-set updatetime=30
+set updatetime=100
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -313,5 +285,8 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 nmap <space>e <Cmd>CocCommand explorer --quit-on-open<CR>
 nmap <space>f :vimgrep /FIX\\|TODO\\|BUG\\|fix\\|todo\\|bug/ **/*.c \| copen <CR>
-nmap <space>n :w \| Error<CR>
-nmap <space>d <C-]>
+nmap <space>d g<C-]>
+nmap <space>D :execute 'tab tag '.expand('<cword>')<CR>
+
+autocmd BufWinEnter *.cpp execute 'silent !cp ~/.vim/coc-settings-cpp.json ~/.vim/coc-settings.json' | execute 'silent CocRestart'
+autocmd BufWinEnter *.c execute 'silent !cp ~/.vim/coc-settings-c.json ~/.vim/coc-settings.json' | execute 'silent CocRestart'
