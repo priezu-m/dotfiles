@@ -1,4 +1,5 @@
-Checks: 'clang-diagnostic-*,
+Checks: >
+         clang-diagnostic-*,
          clang-analyzer-*,
          abseil-duration-*,
          abseil-faster-strsplit-delimiter,
@@ -36,4 +37,8 @@ Checks: 'clang-diagnostic-*,
          modernize-avoid-bind,
          modernize-macro-to-enum,
          performance-*,
-         readability'
+         readability-*,
+
+CheckOptions:
+      - key: readability-function-size.StatementThreshold
+        value: 42
