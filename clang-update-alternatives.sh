@@ -49,7 +49,7 @@ update-alternatives --install \
 update-alternatives --install \
         /usr/bin/clang-cpp             clang-cpp             /usr/bin/clang-cpp-13 200
 update-alternatives --install \
-        /usr/bin/clang-format          clang-format          /usr/bin/clang-format-13 200
+        /usr/bin/clang-format          clang-format          /usr/bin/clang-format-15 200
 update-alternatives --install \
         /usr/bin/clang-format-diff     clang-format-diff     /usr/bin/clang-format-diff-13 200
 update-alternatives --install \
