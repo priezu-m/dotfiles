@@ -77,6 +77,8 @@ function! s:line(n)
 		return "#pragma clang diagnostic ignored \"-Wunused-macros\""
 	elseif a:n == 19 " pragma
 		return "#pragma clang diagnostic pop"
+	elseif a:n == 20 " dummy declaration
+		return ";"
 	endif
 endfunction
 
@@ -109,7 +111,7 @@ function! s:date()
 endfunction
 
 function! s:insert()
-	let l:line = 19
+	let l:line = 20
 
 	" empty line after header
 	call append(0, "")
