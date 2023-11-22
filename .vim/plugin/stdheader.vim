@@ -63,11 +63,11 @@ function! s:line(n)
 		return s:textline("Created:  " . s:date(), '')
 	elseif a:n == 9 " updated
 		return s:textline("Updated:  " . s:date(), '')
-	elseif a:n == 12 || a:n == 18" newline
+	elseif a:n == 12 || a:n == 20 " newline
 		return ""
-	elseif a:n == 13 " dummy declaration
+	elseif a:n == 13 " semi
 		return ";"
-	elseif a:n == 14 " dummy declaration
+	elseif a:n == 14 " pragma
 		return "#pragma clang diagnostic push"
 	elseif a:n == 15 " pragma
 		return "#pragma clang diagnostic warning \"-Weverything\""
@@ -75,10 +75,12 @@ function! s:line(n)
 		return "#pragma clang diagnostic ignored \"-Wempty-translation-unit\""
 	elseif a:n == 17 " pragma
 		return "#pragma clang diagnostic ignored \"-Wunused-macros\""
+	elseif a:n == 18 " pragma
+		return "#pragma clang diagnostic ignored \"-Wextra-semi\""
 	elseif a:n == 19 " pragma
-		return "#pragma clang diagnostic pop"
-	elseif a:n == 20 " dummy declaration
 		return ";"
+	elseif a:n == 21 " pragma
+		return "#pragma clang diagnostic pop"
 	endif
 endfunction
 
@@ -111,10 +113,10 @@ function! s:date()
 endfunction
 
 function! s:insert()
-	let l:line = 20
+	let l:line = 21
 
 	" empty line after header
-	call append(0, "")
+	"call append(0, "")
 
 	" loop over lines
 	while l:line > 0
@@ -138,6 +140,7 @@ endfunction
 function! s:stdheader()
 	if s:update()
 		call s:insert()
+		:d
 	endif
 endfunction
 
