@@ -63,24 +63,26 @@ function! s:line(n)
 		return s:textline("Created:  " . s:date(), '')
 	elseif a:n == 9 " updated
 		return s:textline("Updated:  " . s:date(), '')
-	elseif a:n == 12 || a:n == 20 " newline
+	elseif a:n == 12 || a:n == 21 " newline
 		return ""
 	elseif a:n == 13 " semi
 		return ";"
 	elseif a:n == 14 " pragma
-		return "#pragma clang diagnostic push"
+		return "#pragma GCC diagnostic push"
 	elseif a:n == 15 " pragma
-		return "#pragma clang diagnostic warning \"-Weverything\""
+		return "#pragma GCC diagnostic ignored \"-Wpragmas\""
 	elseif a:n == 16 " pragma
-		return "#pragma clang diagnostic ignored \"-Wempty-translation-unit\""
+		return "#pragma GCC diagnostic warning \"-Weverything\""
 	elseif a:n == 17 " pragma
-		return "#pragma clang diagnostic ignored \"-Wunused-macros\""
+		return "#pragma GCC diagnostic ignored \"-Wempty-translation-unit\""
 	elseif a:n == 18 " pragma
-		return "#pragma clang diagnostic ignored \"-Wextra-semi\""
+		return "#pragma GCC diagnostic ignored \"-Wunused-macros\""
 	elseif a:n == 19 " pragma
+		return "#pragma GCC diagnostic ignored \"-Wextra-semi\""
+	elseif a:n == 20 " pragma
 		return ";"
-	elseif a:n == 21 " pragma
-		return "#pragma clang diagnostic pop"
+	elseif a:n == 22 " pragma
+		return "#pragma GCC diagnostic pop"
 	endif
 endfunction
 
@@ -113,7 +115,7 @@ function! s:date()
 endfunction
 
 function! s:insert()
-	let l:line = 21
+	let l:line = 22
 
 	" empty line after header
 	"call append(0, "")
